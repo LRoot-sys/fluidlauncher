@@ -53,7 +53,7 @@ FluidLauncher::FluidLauncher(QStringList* args)
     pictureFlowWidget = new PictureFlow();
     slideShowWidget = new SlideShow();
     inputTimer = new QTimer();
-
+ 
     addWidget(pictureFlowWidget);
     addWidget(slideShowWidget);
     setCurrentWidget(pictureFlowWidget);
@@ -82,7 +82,7 @@ FluidLauncher::FluidLauncher(QStringList* args)
     if ( (configIndex != -1) && (configIndex != args->count()-1) )
         success = loadConfig(args->at(configIndex+1));
     else
-        success = loadConfig("config.xml");
+        success = loadConfig("/MES/config.xml");
 
     if (success) {
       populatePictureFlow();
@@ -124,8 +124,8 @@ bool FluidLauncher::loadConfig(QString configPath)
             else if(reader.name() == "slideshow")
                 parseSlideshow(reader);
         }
-    }
-
+    } 
+ 
     if (reader.hasError()) {
        qDebug() << QString("Error parsing %1 on line %2 column %3: \n%4")
                 .arg(configPath)
